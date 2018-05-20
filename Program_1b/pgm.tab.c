@@ -85,10 +85,7 @@
 # define YYERROR_VERBOSE 0
 #endif
 
-/* In a future release of Bison, this section will be replaced
-   by #include "pgm.tab.h".  */
-#ifndef YY_YY_PGM_TAB_H_INCLUDED
-# define YY_YY_PGM_TAB_H_INCLUDED
+
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -119,11 +116,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_PGM_TAB_H_INCLUDED  */
+
 
 /* Copy the second part of user declarations.  */
 
-#line 127 "pgm.tab.c" /* yacc.c:358  */
+#line 124 "pgm.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1201,66 +1198,66 @@ yyreduce:
         case 2:
 #line 10 "pgm.y" /* yacc.c:1646  */
     {printf("Res=%d\n",(yyvsp[-1]));}
-#line 1205 "pgm.tab.c" /* yacc.c:1646  */
+#line 1202 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
 #line 13 "pgm.y" /* yacc.c:1646  */
     {yyerror("Invalid Exp:\n");yyerrok;}
-#line 1211 "pgm.tab.c" /* yacc.c:1646  */
+#line 1208 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 15 "pgm.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-2])+(yyvsp[0]);}
-#line 1217 "pgm.tab.c" /* yacc.c:1646  */
+#line 1214 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 16 "pgm.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-2])-(yyvsp[0]);}
-#line 1223 "pgm.tab.c" /* yacc.c:1646  */
+#line 1220 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 17 "pgm.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-2])*(yyvsp[0]);}
-#line 1229 "pgm.tab.c" /* yacc.c:1646  */
+#line 1226 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 18 "pgm.y" /* yacc.c:1646  */
-    {if((yyvsp[0])==0)
-{
-printf("\n Divide by 0 error \n");
-return 0;
-}
-else
-(yyval)=(yyvsp[-2])/(yyvsp[0]);
-}
-#line 1242 "pgm.tab.c" /* yacc.c:1646  */
+    {	if((yyvsp[0])==0)
+		{
+			printf("\n Divide by 0 error \n");
+			return 0;
+		}
+		else
+			(yyval)=(yyvsp[-2])/(yyvsp[0]);
+		}
+#line 1239 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 26 "pgm.y" /* yacc.c:1646  */
     {(yyval)=-(yyvsp[0]);}
-#line 1248 "pgm.tab.c" /* yacc.c:1646  */
+#line 1245 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 29 "pgm.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[0]);}
-#line 1254 "pgm.tab.c" /* yacc.c:1646  */
+#line 1251 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 30 "pgm.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-1])*10+(yyvsp[0]); }
-#line 1260 "pgm.tab.c" /* yacc.c:1646  */
+#line 1257 "pgm.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1264 "pgm.tab.c" /* yacc.c:1646  */
+#line 1261 "pgm.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1492,22 +1489,22 @@ yyreturn:
 
 main()
 {
-printf("Enter the valid arithmetic exression : \n");
-yyparse();
+	printf("Enter the valid arithmetic exression : \n");
+	yyparse();
 }
 yyerror(char *s)
 {
-printf("%s\n",s);
+	printf("%s\n",s);
 }
 yylex()
 {
-int c;
-while((c=getchar())==' ');
-if(isdigit(c))
-{
-yylval=c-'0';
-return DIG;
-}
-return c;
+	int c;
+	while((c=getchar())==' ');
+	if(isdigit(c))
+	{
+		yylval=c-'0';
+		return DIG;
+	}
+	return c;
 }
 

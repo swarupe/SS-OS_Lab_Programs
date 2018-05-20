@@ -1808,18 +1808,18 @@ void yyfree (void * ptr )
 
 int main()
 {
-FILE *fp;
-char file[10];
-printf("\n enter the filename:");
-scanf("%s",file);
-fp=fopen(file,"r");
-yyin=fp;
-yylex();
-printf("total identifiers are:%d\n",count);
-return 0;
+	FILE *fp;
+	char file[10];
+	printf("\nEnter the filename:");
+	scanf("%s",file);
+	fp=fopen(file,"r");
+	yyin=fp;
+	yylex();
+	printf("\nTotal identifiers are:%d\n",count);
+	return 0;
 }
 yywrap()
 {
-return 1;
+	return 1;
 }
 
