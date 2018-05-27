@@ -1,34 +1,18 @@
-%{
-#include<stdio.h>
-int count=0;
-%}
-op[\+\-\*\/\=]
-nop[\,\;\""]
-letter[a-zA-Z]
-digit[0-9]
-id {letter}*|({letter}{digit})+
-notid({digit}{letter})+
-%%
-[\t\n]+
-("int")|("float")|("char")|("case")|("default")|("if")|("for")|("printf")|("scanf") {printf("%s is a keyword\n",yytext);}
-{id} {printf("%s is an identifier\n",yytext);count++;}
-"+"|"-"|"*"|"/"|"=" {printf("%s is not an identifier\n",yytext);}
-{notid} {printf("%s is not an identifier\n",yytext);}
-","|";"|"''" {;}
-%%
-int main()
+%{ 
+#include <stdio.h> 
+#include "pgm.tab.h" 
+int yylex();
+extern yylval; 
+%} 
+%% 
+[ \t] ; 
+[+|-|*|/|=|<|>] {printf("operator is %s\n",yytext);return OP;} 
+[0-9]+ {yylval = atoi(yytext); printf("numbers is %d\n",yylval); return DIGIT;} 
+int|char|bool|float|void|for|do|while|if|else|return|void {printf("keyword is %s\n",yytext);return KEY;} 
+[a-zA-Z0-9]+ {printf("identifier is %s\n",yytext);return ID;} ; 
+%% 
+int yywrap()
 {
-	FILE *fp;
-	char file[10];
-	printf("\nEnter the filename:");
-	scanf("%s",file);
-	fp=fopen(file,"r");
-	yyin=fp;
-	yylex();
-	printf("\nTotal identifiers are:%d\n",count);
-	return 0;
+return 1;
 }
-yywrap()
-{
-	return 1;
-}
+
