@@ -19,20 +19,23 @@ input: DIGIT input { dig++; }
 extern int yylex(); 
 extern int yyparse(); 
 extern FILE *yyin; 
-main() { 
-FILE *myfile = fopen("input.c", "r"); 
-if (!myfile) 
+main() 
 { 
-printf("I can't open input.c!"); 
-return -1; 
-} 
-yyin = myfile; 
-do { 
-yyparse();
- }while (!feof(yyin)); 
-printf("numbers = %d\nKeywords = %d\nIdentifiers = %d\noperators = %d\n", dig, key,id, op); }
- void yyerror() 
+	FILE *myfile = fopen("input.c", "r"); 
+	if (!myfile) 
+	{ 
+		printf("I can't open input.c!"); 
+		return -1; 
+	} 
+	yyin = myfile; 
+	do 
+	{ 
+		yyparse();
+	}while (!feof(yyin)); 
+	printf("numbers = %d\nKeywords = %d\nIdentifiers = %d\noperators = %d\n", dig, key,id, op); 
+}
+void yyerror() 
 { 
-printf("EEK, parse error! Message: ");
- exit(-1); 
+	printf("EEK, parse error! Message: ");
+ 	exit(-1); 
 } 
